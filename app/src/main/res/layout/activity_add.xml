@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_actionbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/grey_dark" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/grey_dark" />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dp_12"
+            android:paddingRight="@dimen/dp_12">
+
+            <!--标题-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:text="标        题:"
+                    android:textColor="@color/c_333333_text"
+                    android:textSize="@dimen/sp_14" />
+
+                <EditText
+                    android:id="@+id/et_title_add_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:hint="目标标题"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_333333_text"
+                    android:textColorHint="@color/c_999_text"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <!--可以选择完成时间-->
+            <LinearLayout
+                android:id="@+id/ll_optional_add_act"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:text="可完成时间:"
+                    android:textColor="@color/c_333333_text"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/tv_optional_add_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="只有该时段才能完成目标，默认全天"
+                    android:textColor="@color/c_333333_text"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <!--预期完成度-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:text="预期完成度:"
+                    android:textColor="@color/c_333333_text"
+                    android:textSize="@dimen/sp_14" />
+
+                <EditText
+                    android:id="@+id/et_desired_add_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:hint="预期完成情况百分比"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_333333_text"
+                    android:textColorHint="@color/c_999_text"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <!--完成奖励-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:text="奖        励:"
+                    android:textColor="@color/c_333333_text"
+                    android:textSize="@dimen/sp_14" />
+
+                <EditText
+                    android:id="@+id/et_award_add_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:hint="目标达成奖励"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_333333_text"
+                    android:textColorHint="@color/c_999_text"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <!--失败惩罚-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_48"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:text="惩        罚:"
+                    android:textColor="@color/c_333333_text"
+                    android:textSize="@dimen/sp_14" />
+
+                <EditText
+                    android:id="@+id/et_punishment_add_act"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:hint="目标失败惩罚"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/c_333333_text"
+                    android:textColorHint="@color/c_999_text"
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
+
+            <!--任务具体内容-->
+            <EditText
+                android:id="@+id/et_content_add_act"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/dp_48"
+                android:layout_weight="1"
+                android:background="@drawable/bg_et_content"
+                android:gravity="left|top"
+                android:hint="具体信息"
+                android:padding="@dimen/dp_8"
+                android:textColor="@color/c_333333_text"
+                android:textColorHint="@color/c_999_text"
+                android:textSize="@dimen/dp_13" />
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_add_act"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/ic_check_white"
+            app:fabSize="normal"
+            app:layout_anchor="@id/content"
+            app:layout_anchorGravity="bottom|right|end" />
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

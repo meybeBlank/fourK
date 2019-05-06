@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/dp_12"
+    android:paddingRight="@dimen/dp_12"
+    android:paddingTop="@dimen/dp_20">
+
+    <TextView
+        android:id="@+id/tv_content_story_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_12"
+        android:lineSpacingExtra="@dimen/dp_4"
+        android:textColor="@color/c_333333_text"
+        android:textSize="@dimen/sp_14"
+        tools:text="大幅度发打发第三方大师傅啊大幅度发打发第三方大师傅啊" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/dp_8"
+        android:background="@color/c_dfdfdf_background_gray" />
+
+</FrameLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_today"
+        android:icon="@drawable/ic_today_task"
+        android:title="今日目标" />
+
+    <item
+        android:id="@+id/menu_activiting"
+        android:icon="@drawable/ic_finished_task"
+        android:title="当前目标" />
+
+    <item
+        android:id="@+id/menu_overdue"
+        android:icon="@drawable/ic_overdue_task"
+        android:title="历史目标" />
+</menu>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_16"
+    android:paddingRight="@dimen/dp_16"
+    >
+
+    <ProgressBar
+        android:id="@+id/progressBar_dialog"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:progress="20" />
+
+    <TextView
+        android:id="@+id/tv_progress_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingTop="@dimen/dp_4"
+        android:text="准备下载..."
+        android:textColor="@color/c_333333_text"
+        android:textSize="@dimen/sp_12"
+        tools:text="123/123134" />
+</LinearLayout>

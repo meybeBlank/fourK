@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId 'com.fengz.personal.fourweeks'
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // release是否打印日志 默认false
+        buildConfigField('boolean', 'LOG_RELEASE_SHOW', 'false')
+        // debug日志等级 默认最低
+        buildConfigField('int', 'LOG_DEBUG_LEVEL', '0')
+
+        // 默认项目Url路径配置  debug包路径
+        buildConfigField('String', 'DEBUG_URL', '"https://www.apiopen.top"')
+        // 默认项目Url路径配置  release包路径
+        buildConfigField('String', 'RELEASE_URL', '"https://www.apiopen.top"')
+
+        // xiaok 项目Url路径配置  debug包路径
+        buildConfigField('String', 'DEBUG_URL_XK', '"http://test.merchant.wmdev2.lsh123.com/"')
+        // xiaok 项目Url路径配置  release包路径
+        buildConfigField('String', 'RELEASE_URL_XK', '"http://test.merchant.wmdev2.lsh123.com/"')
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    productFlavors {
+    }
+}
+
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.fengz.personal.fourweeks.db'// 设置DaoMaster、DaoSession、Dao 包名
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // retrofit + rxjava
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    //    implementation "com.trello.rxlifecycle3:rxlifecycle:3.0.0"
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
+    //    implementation "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:3.0.0"
+    // dagger2
+    implementation 'com.google.dagger:dagger:2.19'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
+    // dagger android
+    implementation 'com.google.dagger:dagger-android:2.19'
+    implementation 'com.google.dagger:dagger-android-support:2.19'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.19'
+    // greenDao
+    implementation 'org.greenrobot:greendao:3.2.2'
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    // butterknifie
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // bottom navigation for material design
+    implementation 'com.aurelhubert:ahbottomnavigation:2.2.0'
+    // 头尾上下拉 RecyclerView
+    implementation 'cn.yuan.yu.recycleview:mylibrary:1.0.4'
+}

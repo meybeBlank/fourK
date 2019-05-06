@@ -1,0 +1,92 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!--appBar 背景色-->
+        <!--<item name="colorPrimary">@color/colorPrimaryDark</item>-->
+        <!--状态栏背景色-->
+        <!--<item name="colorPrimaryDark">@color/white</item>-->
+        <!--默认控件色-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:actionBarSize">@dimen/dp_52</item>
+        <item name="toolbarNavigationButtonStyle">@style/ToolbarNavigationButtonStyle</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!--界面背景色-->
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="ToolbarNavigationButtonStyle">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">11dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <!--ActionBar-->
+    <style name="ActionBarThemeOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
+        <!--title 字体颜色-->
+        <item name="android:textColorPrimary">@color/c_333333_text</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!--启动页-->
+    <style name="WelcomeStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/launcher_background</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--actionbar title-->
+    <style name="ActionBarThemeOverlay.WhiteMenu" parent="ActionBarThemeOverlay">
+        <item name="actionMenuTextColor">@color/c_333333_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="PopWinAnimStyle">
+        <item name="android:windowShowAnimation">@anim/dialog_show</item>
+        <item name="android:windowHideAnimation">@anim/dialog_hide</item>
+    </style>
+
+    <!--加载菊花-->
+    <style name="LoadDialogStyle">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <!--菊花-->
+    <style name="LoadingProgressBar">
+        <item name="android:indeterminateBehavior">cycle</item>
+        <item name="android:indeterminateDrawable">@drawable/loading</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <!--多状态布局-->
+    <style name="MultipleStatusView"/>
+    <style name="MultipleStatusView.Content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:paddingTop">@dimen/dp_40</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textColor">#a9b7b7</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="transparentDialog" parent="@android:style/Theme.Dialog">
+        <!--边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--设置后会占满屏幕-->
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+</resources>

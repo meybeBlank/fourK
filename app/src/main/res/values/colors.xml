@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00ffffff</color>
+
+    <color name="colorPrimary">#ff8347</color>
+    <color name="colorPrimaryDark">#f4663b</color>
+    <color name="colorAccent">#f5662d</color>
+
+    <color name="orange">#ff8347</color>
+    <color name="orange_dark">#f4663b</color>
+    <color name="orange_deep">#f5662d</color>
+    <color name="grey_dark">#9e9e9e</color>
+    <color name="white_darker">#fafafa</color>
+    <color name="white">#ffffff</color>
+
+    <color name="c_747474">#747474</color>
+    <color name="c_f0f0f0">#f0f0f0</color>
+    <color name="c_f8f8f8">#f8f8f8</color>
+    <color name="c_333333_text">#333333</color>
+    <color name="c_2d2d2d_text_gray">#2D2D2D</color>
+    <color name="c_b8b8b8_hint">#b8b8b8</color>
+    <color name="c_dfdfdf_background_gray">#dfdfdf</color>
+    <color name="c_cecece_background_gray">#eeeeee</color>
+    <color name="c_ff7f20_orange_e">#FF7F20</color>
+    <color name="c_fbac71_orange_s">#FBAC71</color>
+    <color name="c_999_text">#999999</color>
+    <color name="c_bg_8a8a8a">#8a8a8a</color>
+    <color name="c_space_line">#e7e7e7</color>
+    <color name="c_bg_f9f9f9">#f9f9f9</color>
+
+    <array name="tab_colors">
+        <item name="tab_1">#455C65</item>
+        <item name="tab_2">#00886A</item>
+        <item name="tab_3">#8B6B62</item>
+        <item name="tab_4">#6C4A42</item>
+    </array>
+
+    <color name="day_unactivite">#ebedf0</color>
+    <color name="day_activiting">#c6e38f</color>
+    <color name="day_finish">#1c6029</color>
+</resources>

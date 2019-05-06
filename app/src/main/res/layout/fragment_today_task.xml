@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fengz.personal.fourweeks.common.MultipleRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mull_today_frg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_bg_f9f9f9">
+
+    <View
+        android:id="@+id/temp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/c_space_line" />
+
+    <yuan.kuo.yu.view.YRecyclerView
+        android:id="@+id/recycler_today_frg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temp"
+        android:overScrollMode="never"
+        android:padding="@dimen/dp_4"
+        android:scrollbars="none" />
+</com.fengz.personal.fourweeks.common.MultipleRelativeLayout>

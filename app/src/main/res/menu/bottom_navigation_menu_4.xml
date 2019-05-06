@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/main_home"
+        android:icon="@drawable/ic_home" />
+
+    <item
+        android:title="@string/main_msg"
+        android:icon="@drawable/ic_bubble" />
+
+    <item
+        android:title="@string/main_info"
+        android:icon="@drawable/ic_info" />
+
+    <item
+        android:title="@string/main_mine"
+        android:icon="@drawable/ic_mine" />
+</menu>

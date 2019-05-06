@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="51dp">
+
+    <ImageView
+        android:id="@+id/img_item_bootom_dialog"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_8"
+        android:layout_toLeftOf="@+id/tv_name_item_bottom_dialog"
+        tools:src="@drawable/ic_add" />
+
+    <TextView
+        android:id="@+id/tv_name_item_bottom_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="@color/c_333333_text"
+        android:textSize="@dimen/dp_13"
+        tools:text="sdfasf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c_space_line" />
+</RelativeLayout>
