@@ -7,8 +7,8 @@ android {
         applicationId 'com.fengz.personal.fourweeks'
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // release是否打印日志 默认false

@@ -1,11 +1,13 @@
 package com.fengz.personal.fourweeks.base;
 
 import android.app.Application;
+import android.app.NotificationManager;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.fengz.personal.fourweeks.db.DaoMaster;
 import com.fengz.personal.fourweeks.db.DaoSession;
 import com.fengz.personal.fourweeks.di.DaggerAppComponent;
+import com.fengz.personal.fourweeks.utils.NotificationAManager;
 
 import javax.inject.Inject;
 
@@ -34,6 +36,7 @@ public class MyApplication extends DaggerApplication {
         super.onCreate();
         mInstance = this;
         initGreenDao();
+        NotificationAManager.get().init();
     }
 
     /**

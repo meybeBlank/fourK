@@ -197,7 +197,8 @@ public class TaskRepository {
      * <p>
      * 功能描述：整表更新，每日0点 或者是当日第一次打开app时进行更新
      */
-    public void updateDB() {
+    public int[] updateDB() {
+        int[] result = new int[3];
         long beginDay = DateUtils.getBeginDay() + 1;
 //        long yesterday = beginDay - 24L*60*60*60*1000;
 
@@ -211,6 +212,7 @@ public class TaskRepository {
             day.setDayStatus(DayTaskStatus.FAIL);
         }
         mDayDao.updateInTx(actDayList);
+        result[0] = actDayList.size();
         LogUtils.info(LogUtils.TAG_DB, "昨天未完成的任务条数： " + actDayList.size());
 
         // 更新所有今日任务状态
@@ -222,6 +224,7 @@ public class TaskRepository {
                 dayList) {
             day.setDayStatus(DayTaskStatus.ACTIVITING);
         }
+        result[1] = dayList.size();
         LogUtils.info(LogUtils.TAG_DB, "今日待完成的任务条数： " + dayList.size());
 
         // 更新主任务状态
@@ -234,6 +237,9 @@ public class TaskRepository {
             task.setStatus(TaskStatus.FINISHED);
         }
         mTaskDao.updateInTx(taskList);
-        LogUtils.info(LogUtils.TAG_DB, "今日过期的任务条数： " + actDayList.size());
+        result[2] = taskList.size();
+        LogUtils.info(LogUtils.TAG_DB, "今日过期的任务条数： " + taskList.size());
+
+        return result;
     }
 }
