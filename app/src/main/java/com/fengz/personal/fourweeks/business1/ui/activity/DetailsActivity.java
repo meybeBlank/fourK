@@ -21,6 +21,8 @@ import com.fengz.personal.fourweeks.business1.presenter.DetailsPresenter;
 import com.fengz.personal.fourweeks.business1.ui.adapter.DayTableAdapter;
 import com.fengz.personal.fourweeks.utils.DateUtils;
 
+import java.text.DecimalFormat;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -78,7 +80,8 @@ public class DetailsActivity extends BaseActivity implements DetailsContract.Vie
                 + " —— "
                 + DateUtils.parse(task.getEndData(), DateUtils.FORMAT_1));
         mTvContentDetailsAct.setText(task.getContent());
-        mTvDegreeDetailsAct.setText(task.getTaskPersents() + "/" + task.getDesiredPersents());
+        mTvDegreeDetailsAct.setText(new DecimalFormat("0.00").format(100 * task.getTaskPersents())
+                + "/" + task.getDesiredPersents());
         if (!TextUtils.isEmpty(task.getAward())) {
             mTvAwardDetailsAct.setVisibility(View.VISIBLE);
             mTvAwardDetailsAct.setText(task.getAward());

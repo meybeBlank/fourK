@@ -7,7 +7,7 @@ import com.fengz.personal.fourweeks.business1.model.anno.DayTaskStatus;
 
 import javax.inject.Inject;
 
-public class TodayTaskPresenter extends BasePresenter<TodayTaskContract.View> implements TodayTaskContract.Presenter {
+public class TodayTaskPresenter extends BasePresenter<TodayTaskContract.View> implements TodayTaskContract. Presenter {
 
     TaskRepository mRepository;
 

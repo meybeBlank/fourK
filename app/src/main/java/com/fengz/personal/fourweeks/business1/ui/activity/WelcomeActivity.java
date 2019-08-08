@@ -29,6 +29,7 @@ public class WelcomeActivity extends BaseActivity {
         if (lastLogin <= DateUtils.getBeginDay()) {
             LogUtils.info(LogUtils.TAG_DB, "每日更新数据库！！！");
             mRepository.updateDB();
+            mPer.setLastLogin();
         }
         mNavigator.navigator2MainAct(this);
         finish();
