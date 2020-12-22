@@ -3,6 +3,7 @@ package com.fengz.personal.fourweeks.business1.ui.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class LoadingDialog extends Dialog {
     private String mContent;
 
     public LoadingDialog(@NonNull Context context) {
-        super(context,R.style.LoadDialogStyle);
+        super(context, R.style.LoadDialogStyle);
         init(context);
     }
 
@@ -54,6 +55,6 @@ public class LoadingDialog extends Dialog {
 
     public void setContent(String msg) {
         mTvLoading.setText(msg);
-        mTvLoading.setVisibility(View.VISIBLE);
+        mTvLoading.setVisibility(TextUtils.isEmpty(msg) ? View.GONE : View.VISIBLE);
     }
 }

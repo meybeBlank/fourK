@@ -10,32 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fengz.personal.fourweeks.R;
-import com.fengz.personal.fourweeks.base.mvp.APresenter;
-import com.fengz.personal.fourweeks.base.mvp.BaseFragment;
-import com.fengz.personal.fourweeks.business1.contract.TodayTaskContract;
+import com.fengz.personal.fourweeks.basemvvm.BaseFragment;
 import com.fengz.personal.fourweeks.business1.model.entity.TaskBean;
 import com.fengz.personal.fourweeks.business1.ui.adapter.TodayTaskAdapter;
-import com.fengz.personal.fourweeks.common.MultipleRelativeLayout;
 import com.fengz.personal.fourweeks.utils.DialogManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import butterknife.BindView;
 import yuan.kuo.yu.view.YRecyclerView;
 
-public class TodayFragment extends BaseFragment implements TodayTaskContract.View {
-
-    @BindView(R.id.recycler_today_frg)
-    YRecyclerView mRecycler;
-    @BindView(R.id.mull_today_frg)
-    MultipleRelativeLayout mMulLayout;
-
-    @APresenter
-    @Inject
-    TodayTaskContract.Presenter mPresenter;
+public class TodayFragment extends BaseFragment {
 
     private List<TaskBean> mData = new ArrayList<>();
     private TodayTaskAdapter mAdapter;
@@ -58,11 +43,21 @@ public class TodayFragment extends BaseFragment implements TodayTaskContract.Vie
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initUI();
+//        initUI();
 
-        mMulLayout.showLoading();
-        mPresenter.getData();
+//        mMulLayout.showLoading();
+//        mPresenter.getData();
         created = true;
+    }
+
+    @Override
+    protected int initContentView() {
+        return 0;
+    }
+
+    @Override
+    protected int initVariableId() {
+        return 0;
     }
 
     @Override
@@ -71,70 +66,70 @@ public class TodayFragment extends BaseFragment implements TodayTaskContract.Vie
         super.onDestroyView();
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (!created) return;
-        if (isVisibleToUser) {
-            mMulLayout.showLoading();
-            mPresenter.getData();
-        }
-    }
-
-    private void initUI() {
-        mRecycler.setLayoutManager(new StaggeredGridLayoutManager(
-                2, StaggeredGridLayoutManager.VERTICAL));
-        mAdapter = new TodayTaskAdapter(mData,
-                position -> showConfirmDialog(mData.get(position)));
-        mRecycler.setLoadMoreEnabled(false);
-        mRecycler.setAdapter(mAdapter);
-        mRecycler.setRefreshAndLoadMoreListener(
-                new YRecyclerView.OnRefreshAndLoadMoreListener() {
-                    @Override
-                    public void onRefresh() {
-                        mPresenter.refreshData();
-                    }
-
-                    @Override
-                    public void onLoadMore() {
-                    }
-                });
-    }
-
-    private void showConfirmDialog(TaskBean bean) {
-        AlertDialog dialog = DialogManager.createAlertDialog(getContext(), true,
-                null, "确认完成任务？",
-                "确认", "取消",
-                (dialog1, which) -> mPresenter.finishTask(bean.getList().get(0).getId()),
-                (dialog12, which) -> dialog12.dismiss());
-        dialog.show();
-    }
-
-    @Override
-    public void finishTask(long dayId) {
-        mPresenter.getData();
-    }
-
-    @Override
-    public void showErr(String msg) {
-        // 本地数据一般没有问题
-    }
-
-    @Override
-    public void setData(List<TaskBean> data) {
-        mMulLayout.showContent();
-        mRecycler.setReFreshComplete();
-        if (data == null || data.size() < 1) {
-            mMulLayout.showEmpty();
-        } else {
-            mData.clear();
-            mData.addAll(data);
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public void addData(List<TaskBean> data) {
-        // 没有上拉
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (!created) return;
+//        if (isVisibleToUser) {
+//            mMulLayout.showLoading();
+//            mPresenter.getData();
+//        }
+//    }
+//
+//    private void initUI() {
+//        mRecycler.setLayoutManager(new StaggeredGridLayoutManager(
+//                2, StaggeredGridLayoutManager.VERTICAL));
+//        mAdapter = new TodayTaskAdapter(mData,
+//                position -> showConfirmDialog(mData.get(position)));
+//        mRecycler.setLoadMoreEnabled(false);
+//        mRecycler.setAdapter(mAdapter);
+//        mRecycler.setRefreshAndLoadMoreListener(
+//                new YRecyclerView.OnRefreshAndLoadMoreListener() {
+//                    @Override
+//                    public void onRefresh() {
+//                        mPresenter.refreshData();
+//                    }
+//
+//                    @Override
+//                    public void onLoadMore() {
+//                    }
+//                });
+//    }
+//
+//    private void showConfirmDialog(TaskBean bean) {
+//        AlertDialog dialog = DialogManager.createAlertDialog(getContext(), true,
+//                null, "确认完成任务？",
+//                "确认", "取消",
+//                (dialog1, which) -> mPresenter.finishTask(bean.getList().get(0).getId()),
+//                (dialog12, which) -> dialog12.dismiss());
+//        dialog.show();
+//    }
+//
+//    @Override
+//    public void finishTask(long dayId) {
+//        mPresenter.getData();
+//    }
+//
+//    @Override
+//    public void showErr(String msg) {
+//        // 本地数据一般没有问题
+//    }
+//
+//    @Override
+//    public void setData(List<TaskBean> data) {
+//        mMulLayout.showContent();
+//        mRecycler.setReFreshComplete();
+//        if (data == null || data.size() < 1) {
+//            mMulLayout.showEmpty();
+//        } else {
+//            mData.clear();
+//            mData.addAll(data);
+//            mAdapter.notifyDataSetChanged();
+//        }
+//    }
+//
+//    @Override
+//    public void addData(List<TaskBean> data) {
+//        // 没有上拉
+//    }
 }

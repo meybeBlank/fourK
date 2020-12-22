@@ -13,11 +13,6 @@
         android:layout_height="1px"
         android:background="@color/grey_dark" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/grey_dark" />
-
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

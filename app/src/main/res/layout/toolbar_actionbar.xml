@@ -1,20 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar_actionbar"
-    android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"
-    android:theme="@style/ActionBarThemeOverlay.WhiteMenu">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/toolbar_title"
-        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/c_333333_text"
-        android:textSize="18sp"
-        tools:text="ToolBar" />
-</android.support.v7.widget.Toolbar>
+    <data>
+
+        <variable
+            name="toolbarViewmodel"
+            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.ToolbarViewModel" />
+    </data>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:theme="@style/ActionBarThemeOverlay.WhiteMenu"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/toolbar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:onClick="@{toolbarViewmodel.backClick}"
+                android:paddingLeft="@dimen/dp_23"
+                android:src="@drawable/icon_arrow_gray_left"
+                android:visibility="@{toolbarViewmodel.showBack}" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@={toolbarViewmodel.title}"
+                android:textColor="@color/c_333333_text"
+                android:textSize="18sp"
+                tools:text="ToolBar" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+</layout>

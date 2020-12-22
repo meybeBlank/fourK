@@ -16,6 +16,7 @@ import com.fengz.personal.fourweeks.BuildConfig;
 public class LogUtils {
 
     public static final String TAG_DB = "tagdb";
+    public static final String TAG_BASE = "tag-base";
 
     private static final int VERBOSE = 1;
     private static final int DEBUG = 2;

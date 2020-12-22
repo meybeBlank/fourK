@@ -5,26 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.fengz.personal.fourweeks.BR;
 import com.fengz.personal.fourweeks.R;
-import com.fengz.personal.fourweeks.base.mvp.BaseActivity;
-import com.fengz.personal.fourweeks.business1.contract.MainContract;
+import com.fengz.personal.fourweeks.basemvvm.BaseActivity;
 import com.fengz.personal.fourweeks.business1.ui.Navigator;
 import com.fengz.personal.fourweeks.business1.ui.adapter.MainPageAdapter;
 import com.fengz.personal.fourweeks.business1.ui.fragment.OverdueFragment;
+import com.fengz.personal.fourweeks.business1.ui.view.ToolbarViewHolder;
+import com.fengz.personal.fourweeks.business1.ui.viewmodel.MainActViewModel;
+import com.fengz.personal.fourweeks.databinding.ActivityMainBinding;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * 创建时间：2019/4/1
@@ -32,19 +28,16 @@ import butterknife.OnClick;
  * 作   者：fengzhen
  * <p>
  * 功能描述：注解界面包含三个子Fragment
- * {@link TodayFragment} {@link ActivitingFragment} {@link OverdueFragment}
+ * {@link com.fengz.personal.fourweeks.business1.ui.fragment.TodayFragment}
+ * {@link com.fengz.personal.fourweeks.business1.ui.fragment.ActivitingFragment}
+ * {@link OverdueFragment}
  */
-public class MainActivity extends BaseActivity implements MainContract.View {
-
-    @BindView(R.id.nv_main_act)
-    NavigationView mNavigation;
-    @BindView(R.id.drawer_main_act)
-    DrawerLayout mDrawer;
-    @BindView(R.id.viewpager_main_act)
-    ViewPager mViewPager;
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainActViewModel> {
 
     @Inject
     Navigator mNavigator;
+
+    ToolbarViewHolder mToolbarView;
 
     public static Intent getCallingIntent(@NonNull Context context) {
         Intent intent = new Intent(context, MainActivity.class);
@@ -54,19 +47,31 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        setTitle("今日目标");
-        showHomeAsUp(false);
-        setHomeAsUp(R.drawable.ic_toc_black);
-
-        initUI();
+        initToolbarHolder();
     }
 
-    private void initUI() {
-        mNavigation.setNavigationItemSelectedListener(this::onOptionsItemSelected);
-        mViewPager.setAdapter(new MainPageAdapter(getSupportFragmentManager()));
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    private void initToolbarHolder() {
+        mToolbarView = new ToolbarViewHolder();
+        mToolbarView.init(this, mBinding.includeToolbar.toolbarActionbar);
+        mBinding.setVariable(BR.toolbarViewmodel, mToolbarView.getViewModel());
+    }
+
+    @Override
+    protected int initContentView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected int initVariableId() {
+        return BR.viewModel;
+    }
+
+    @Override
+    public void initBaseUI() {
+        mBinding.nvMainAct.setNavigationItemSelectedListener(this::onOptionsItemSelected);
+        mBinding.viewpagerMainAct.setAdapter(new MainPageAdapter(getSupportFragmentManager()));
+        mBinding.viewpagerMainAct.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
@@ -91,17 +96,22 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             public void onPageScrollStateChanged(int i) {
             }
         });
-        mViewPager.setCurrentItem(0);
-        mViewPager.setOffscreenPageLimit(3);
+        setTitle("今日目标");
+        mBinding.viewpagerMainAct.setCurrentItem(0);
+        mBinding.viewpagerMainAct.setOffscreenPageLimit(3);
     }
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
+        if (mBinding.drawerMainAct.isDrawerOpen(GravityCompat.START)) {
+            mBinding.drawerMainAct.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void setTitle(String title) {
+        mToolbarView.getDataBinding().toolbarTitle.setText(title);
     }
 
     @Override
@@ -109,33 +119,24 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         switch (item.getItemId()) {
             case R.id.menu_today:
                 setTitle("今日目标");
-                mDrawer.closeDrawer(GravityCompat.START);
-                mViewPager.setCurrentItem(0);
+                mBinding.drawerMainAct.closeDrawer(GravityCompat.START);
+                mBinding.viewpagerMainAct.setCurrentItem(0);
                 return true;
             case R.id.menu_activiting:
                 setTitle("当前目标");
-                mDrawer.closeDrawer(GravityCompat.START);
-                mViewPager.setCurrentItem(1);
+                mBinding.drawerMainAct.closeDrawer(GravityCompat.START);
+                mBinding.viewpagerMainAct.setCurrentItem(1);
                 return true;
             case R.id.menu_overdue:
-                mDrawer.closeDrawer(GravityCompat.START);
+                mBinding.drawerMainAct.closeDrawer(GravityCompat.START);
                 setTitle("历史目标");
-                mViewPager.setCurrentItem(2);
+                mBinding.viewpagerMainAct.setCurrentItem(2);
                 return true;
             case android.R.id.home:
-                mDrawer.openDrawer(Gravity.LEFT);
+                mBinding.drawerMainAct.openDrawer(Gravity.LEFT);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @OnClick(value = {R.id.fab_add_task_main_act})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.fab_add_task_main_act:
-                mNavigator.navigator2AddTaskAct(this);
-                break;
         }
     }
 }

@@ -89,4 +89,10 @@
         <!--设置后会占满屏幕-->
         <item name="android:windowBackground">@color/transparent</item>
     </style>
+
+    <style name="LineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/c_space_line</item>
+    </style>
 </resources>

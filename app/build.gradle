@@ -14,7 +14,7 @@ android {
         // release是否打印日志 默认false
         buildConfigField('boolean', 'LOG_RELEASE_SHOW', 'false')
         // debug日志等级 默认最低
-        buildConfigField('int', 'LOG_DEBUG_LEVEL', '0')
+        buildConfigField('int', 'LOG_DEBUG_LEVEL', '3')
 
         // 默认项目Url路径配置  debug包路径
         buildConfigField('String', 'DEBUG_URL', '"https://www.apiopen.top"')
@@ -37,6 +37,10 @@ android {
         sourceCompatibility 1.8
     }
     productFlavors {
+    }
+
+    dataBinding {
+        enabled true
     }
 }
 
@@ -62,6 +66,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
     //    implementation "com.trello.rxlifecycle3:rxlifecycle:3.0.0"
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
     //    implementation "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle:3.0.0"
@@ -84,4 +89,8 @@ dependencies {
     implementation 'com.aurelhubert:ahbottomnavigation:2.2.0'
     // 头尾上下拉 RecyclerView
     implementation 'cn.yuan.yu.recycleview:mylibrary:1.0.4'
+    // databinding adapter
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
 }
