@@ -1,6 +1,5 @@
 package com.fengz.personal.fourweeks.business1.ui.view;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,6 +20,6 @@ public class ToolbarViewHolder extends BaseView<ToolbarActionbarBinding, Toolbar
     public void init(AppCompatActivity activity, View parent) {
         super.init(activity, parent);
         activity.setSupportActionBar((Toolbar) parent);
-
+        mViewModel.title.set("今日目标");
     }
 }

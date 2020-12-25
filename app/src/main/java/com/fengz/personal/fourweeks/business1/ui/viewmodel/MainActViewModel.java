@@ -14,6 +14,5 @@ public class MainActViewModel extends BaseViewModel {
 
     public MainActViewModel(@NonNull Application application) {
         super(application);
-//        ItemBindingModel
     }
 }

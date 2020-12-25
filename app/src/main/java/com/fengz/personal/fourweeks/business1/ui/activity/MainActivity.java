@@ -47,8 +47,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActViewM
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initToolbarHolder();
     }
 
     private void initToolbarHolder() {
@@ -69,6 +67,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActViewM
 
     @Override
     public void initBaseUI() {
+        initToolbarHolder();
+
         mBinding.nvMainAct.setNavigationItemSelectedListener(this::onOptionsItemSelected);
         mBinding.viewpagerMainAct.setAdapter(new MainPageAdapter(getSupportFragmentManager()));
         mBinding.viewpagerMainAct.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -96,7 +96,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActViewM
             public void onPageScrollStateChanged(int i) {
             }
         });
-        setTitle("今日目标");
         mBinding.viewpagerMainAct.setCurrentItem(0);
         mBinding.viewpagerMainAct.setOffscreenPageLimit(3);
     }

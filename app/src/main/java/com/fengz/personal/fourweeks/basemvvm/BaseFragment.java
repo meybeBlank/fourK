@@ -40,8 +40,8 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
     private final LifecycleProvider<Lifecycle.Event> PROVIDER =
             AndroidLifecycle.createLifecycleProvider(this);
 
-    private V mBinding;
-    private VM mViewModel;
+    protected V mBinding;
+    protected VM mViewModel;
 
     private LoadingDialog mLoadingDialog;
 
@@ -109,7 +109,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
     /**
      * 扩展LiveData
      */
-    private void observeLiveData() {
+    protected void observeLiveData() {
         LogUtils.info(TAG_BASE, "需要的时候重写方法，扩展LiveData");
     }
 

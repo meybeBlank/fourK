@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.fengz.personal.fourweeks.business1.ui.fragment.ActivitingFragment;
-import com.fengz.personal.fourweeks.business1.ui.fragment.OverdueFragment;
-import com.fengz.personal.fourweeks.business1.ui.fragment.TestFragment;
 import com.fengz.personal.fourweeks.business1.ui.fragment.TodayFragment;
 
 import java.util.HashMap;
@@ -39,7 +36,7 @@ public class MainPageAdapter extends FragmentPagerAdapter {
 //                default:
 //                    break;
             }
-            fragment = new TestFragment();
+            fragment = TodayFragment.newInstance();
             mFragmentHashMap.put(position, fragment);
         }
         return fragment;

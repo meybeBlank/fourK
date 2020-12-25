@@ -4,6 +4,7 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.fengz.personal.fourweeks.business1.ui.viewmodel.MainActViewModel" />
@@ -40,8 +41,6 @@
                     android:layout_height="match_parent"
                     android:overScrollMode="never"
                     android:scrollbars="none" />
-<!--                app:itemBinding="@{viewModel.itemBinding}"-->
-<!--                app:items="@{viewModel.items}"-->
 
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_add_task_main_act"
