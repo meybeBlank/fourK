@@ -14,8 +14,6 @@ import com.fengz.personal.fourweeks.business1.ui.Navigator;
 import java.text.NumberFormat;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,7 +30,7 @@ public class OverDueAdapter extends RecyclerView.Adapter<OverDueAdapter.ViewHold
 
     Navigator mNavigator;
 
-    public OverDueAdapter(List<TaskBean> data,Navigator navigator) {
+    public OverDueAdapter(List<TaskBean> data, Navigator navigator) {
         mData = data;
         mNavigator = navigator;
     }

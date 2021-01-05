@@ -1,41 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dp_8"
-    android:background="@drawable/bg_radius_white"
-    android:elevation="@dimen/dp_2"
-    android:orientation="vertical"
-    android:padding="@dimen/dp_12">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_title_overdue_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_4"
-        android:textColor="@color/c_333333_text"
-        android:textSize="@dimen/sp_14"
-        android:textStyle="bold"
-        tools:text="任务标题" />
+    <data>
 
-    <!--任务完成度-->
-    <TextView
-        android:id="@+id/tv_degree_overdue_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_title_overdue_item"
-        android:textColor="@color/c_333333_text"
-        android:textSize="@dimen/sp_10"
-        tools:text="完成度：20%" />
+        <import type="java.text.NumberFormat" />
 
-    <TextView
-        android:id="@+id/tv_content_overdue_item"
-        android:layout_width="wrap_content"
+        <variable
+            name="viewModel"
+            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.TaskItemViewModel" />
+
+        <variable
+            name="onItemClick"
+            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.OnItemClick" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_degree_overdue_item"
-        android:layout_marginTop="@dimen/dp_4"
-        android:textColor="@color/c_999_text"
-        android:textSize="@dimen/sp_12"
-        tools:text="大范德萨阿斯蒂芬阿萨德法师打发斯蒂芬所发生的发第三方安抚阿斯蒂芬阿斯蒂芬发的说法 阿斯顿发送到发送到发发撒的发的发送到发送到" />
-</RelativeLayout>
+        android:layout_margin="@dimen/dp_8"
+        android:background="@drawable/bg_radius_white"
+        android:elevation="@dimen/dp_2"
+        android:onClick="@{() -> onItemClick.onClick(viewModel)}"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_12">
+
+        <TextView
+            android:id="@+id/tv_title_overdue_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:text="@{viewModel.bean.title}"
+            android:textColor="@color/c_333333_text"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            tools:text="任务标题" />
+
+        <!--任务完成度-->
+        <TextView
+            android:id="@+id/tv_degree_overdue_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title_overdue_item"
+            android:text='@{"完成度：" + NumberFormat.getPercentInstance().format(viewModel.bean.taskPersents)}'
+            android:textColor="@color/c_333333_text"
+            android:textSize="@dimen/sp_10"
+            tools:text="完成度：20%" />
+
+        <TextView
+            android:id="@+id/tv_content_overdue_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_degree_overdue_item"
+            android:layout_marginTop="@dimen/dp_4"
+            android:textColor="@color/c_999_text"
+            android:text="@{viewModel.bean.content}"
+            android:textSize="@dimen/sp_12"
+            tools:text="大范德萨阿斯蒂芬阿萨德法师打发斯蒂芬所发生的发第三方安抚阿斯蒂芬阿斯蒂芬发的说法 阿斯顿发送到发送到发发撒的发的发送到发送到" />
+    </RelativeLayout>
+</layout>

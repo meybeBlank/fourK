@@ -20,14 +20,17 @@ import me.tatarka.bindingcollectionadapter2.OnItemBind;
 
 public class TodayTaskViewModel extends BaseViewModel {
 
+    public SingleLiveEvent<TaskBean> showFinish = new SingleLiveEvent<>();
+    public SingleLiveEvent<Boolean> refresh = new SingleLiveEvent<>();
+    // 放到xml里面
+    public SingleLiveEvent<Integer> showStatus = new SingleLiveEvent<>();
+
+    TaskRepository mRepository;
+
     public TodayTaskViewModel(@NonNull Application application) {
         super(application);
         // 按理来说应该单例的。。。。
         mRepository = new TaskRepository();
-    }
-
-    public interface OnItemClick {
-        void onClick(TodayTaskItemViewModel bean);
     }
 
     //给RecyclerView添加ObservableList
@@ -40,14 +43,7 @@ public class TodayTaskViewModel extends BaseViewModel {
                     .bindExtra(BR.onItemClick, onItemClick);
         }
     };
-//    public ItemBinding<TodayTaskItemViewModel> itemBinding = ItemBinding.of(BR.viewModel, R.layout.item_today);
-
-    public SingleLiveEvent<TaskBean> showFinish = new SingleLiveEvent<>();
-    public SingleLiveEvent<Boolean> refresh = new SingleLiveEvent<>();
-    // 放到xml里面
-    public SingleLiveEvent<Integer> showStatus = new SingleLiveEvent<>();
-
-    public OnItemClick onItemClick = new OnItemClick() {
+    public OnItemClick<TodayTaskItemViewModel> onItemClick = new OnItemClick<TodayTaskItemViewModel>() {
         @Override
         public void onClick(TodayTaskItemViewModel bean) {
             TaskBean taskBean = bean.bean.get();
@@ -56,8 +52,7 @@ public class TodayTaskViewModel extends BaseViewModel {
             }
         }
     };
-
-    TaskRepository mRepository;
+//    public ItemBinding<TodayTaskItemViewModel> itemBinding = ItemBinding.of(BR.viewModel, R.layout.item_today);
 
     public void finishTask(long taskId) {
         mRepository.updateDayTask(taskId, DayTaskStatus.FINISHED);

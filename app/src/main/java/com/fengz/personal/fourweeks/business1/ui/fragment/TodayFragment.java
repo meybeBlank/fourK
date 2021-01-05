@@ -38,14 +38,7 @@ public class TodayFragment extends BaseFragment<FragmentTodayTaskBinding, TodayT
     protected void observeLiveData() {
         mViewModel.showFinish.observe(this, bean -> showConfirmDialog(bean));
         mViewModel.showStatus.observe(this, status -> {
-            if (status == 0) {
-                mBinding.mullTodayFrg.showLoading();
-            } else if (status == 1) {
-                mBinding.mullTodayFrg.showContent();
-//                mBinding.recyclerTodayFrg.setReFreshComplete();
-            } else {
-                mBinding.mullTodayFrg.showEmpty();
-            }
+            mBinding.mullTodayFrg.show(status);
         });
         mViewModel.refresh.observe(this, refresh -> {
             mBinding.refreshTodayFrg.setRefreshing(refresh);

@@ -10,7 +10,7 @@
 
         <variable
             name="onItemClick"
-            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.TodayTaskViewModel.OnItemClick" />
+            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.OnItemClick" />
 
         <import type="com.fengz.personal.fourweeks.business1.model.anno.TaskStatus" />
 

@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.fengz.personal.fourweeks.common.MultipleRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:id="@+id/mull_overdue_frg"
-    android:layout_height="match_parent"
-    android:background="@color/c_bg_f9f9f9">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
 
-    <View
-        android:id="@+id/temp"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/c_space_line" />
+    <data>
 
-    <yuan.kuo.yu.view.YRecyclerView
-        android:id="@+id/recycler_overdue_frg"
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+
+        <variable
+            name="viewModel"
+            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.OverdueTaskViewModel" />
+
+        <variable
+            name="taskAdapter"
+            type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
+    </data>
+
+    <com.fengz.personal.fourweeks.common.MultipleRelativeLayout
+        android:id="@+id/mull_overdue_frg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:layout_below="@+id/temp"
-        android:scrollbars="none" />
-</com.fengz.personal.fourweeks.common.MultipleRelativeLayout>
+        android:layout_height="match_parent"
+        android:background="@color/c_bg_f9f9f9">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_overdue_frg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            binding:adapter="@{taskAdapter}"
+            binding:itemBinding="@{viewModel.itemBinding}"
+            binding:items="@{viewModel.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear()}" />
+    </com.fengz.personal.fourweeks.common.MultipleRelativeLayout>
+</layout>

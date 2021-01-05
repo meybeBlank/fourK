@@ -199,6 +199,16 @@ public class MultipleRelativeLayout extends RelativeLayout {
         showLoading(null == mLoadingView ? inflateView(layoutId) : mLoadingView, layoutParams);
     }
 
+    public final void show(int status) {
+        if (status == 0) {
+            showLoading();
+        } else if (status == 1) {
+            showContent();
+        } else {
+            showEmpty();
+        }
+    }
+
     /**
      * 显示加载中视图
      *

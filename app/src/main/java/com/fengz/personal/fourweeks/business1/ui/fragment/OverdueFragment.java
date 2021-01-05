@@ -8,14 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fengz.personal.fourweeks.BR;
 import com.fengz.personal.fourweeks.R;
 import com.fengz.personal.fourweeks.base.mvp.APresenter;
-import com.fengz.personal.fourweeks.base.mvp.BaseFragment;
+import com.fengz.personal.fourweeks.basemvvm.BaseFragment;
 import com.fengz.personal.fourweeks.business1.contract.OverdueContract;
 import com.fengz.personal.fourweeks.business1.model.entity.TaskBean;
 import com.fengz.personal.fourweeks.business1.ui.Navigator;
 import com.fengz.personal.fourweeks.business1.ui.adapter.OverDueAdapter;
+import com.fengz.personal.fourweeks.business1.ui.viewmodel.OverdueTaskViewModel;
 import com.fengz.personal.fourweeks.common.MultipleRelativeLayout;
+import com.fengz.personal.fourweeks.databinding.FragmentOverdueBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,22 +37,9 @@ import static com.fengz.personal.fourweeks.base.Constants.PAGE_SIZE;
  * <p>
  * 功能描述：过期任务列表
  */
-public class OverdueFragment extends BaseFragment implements OverdueContract.View<TaskBean> {
+public class OverdueFragment extends BaseFragment<FragmentOverdueBinding, OverdueTaskViewModel> {
 
-    @BindView(R.id.recycler_overdue_frg)
-    YRecyclerView mRecycler;
-    @BindView(R.id.mull_overdue_frg)
-    MultipleRelativeLayout mMulLayout;
-
-    private List<TaskBean> mData = new ArrayList<>();
-    private OverDueAdapter mAdapter;
     private boolean created = false;
-
-    @Inject
-    @APresenter
-    OverdueContract.Presenter mPresenter;
-    @Inject
-    Navigator mNavigator;
 
     public static OverdueFragment newInstance() {
         Bundle args = new Bundle();
@@ -58,21 +48,25 @@ public class OverdueFragment extends BaseFragment implements OverdueContract.Vie
         return fragment;
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_overdue, container, false);
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        initUI();
         created = true;
+    }
 
-        mMulLayout.showLoading();
-        mPresenter.getData();
+    @Override
+    protected int initContentView() {
+        return R.layout.fragment_overdue;
+    }
+
+    @Override
+    protected int initVariableId() {
+        return BR.viewModel;
+    }
+
+    @Override
+    protected void observeLiveData() {
+        mViewModel.showStatus.observe(this, integer -> mBinding.mullOverdueFrg.show(integer));
     }
 
     @Override
@@ -80,8 +74,8 @@ public class OverdueFragment extends BaseFragment implements OverdueContract.Vie
         super.setUserVisibleHint(isVisibleToUser);
         if (!created) return;
         if (isVisibleToUser) {
-            mMulLayout.showLoading();
-            mPresenter.getData();
+            mViewModel.showStatus.setValue(0);
+            mViewModel.getData();
         }
     }
 
@@ -89,58 +83,5 @@ public class OverdueFragment extends BaseFragment implements OverdueContract.Vie
     public void onDestroyView() {
         created = false;
         super.onDestroyView();
-    }
-
-    private void initUI() {
-        mRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new OverDueAdapter(mData,mNavigator);
-        mRecycler.setAdapter(mAdapter);
-        mRecycler.setRefreshAndLoadMoreListener(new YRecyclerView.OnRefreshAndLoadMoreListener() {
-            @Override
-            public void onRefresh() {
-                mPresenter.refreshData();
-            }
-
-            @Override
-            public void onLoadMore() {
-                mPresenter.loadmore();
-            }
-        });
-    }
-
-    @Override
-    public void showErr(String msg) {
-        // 本地数据一般没有问题
-    }
-
-    @Override
-    public void setData(List<TaskBean> data) {
-        mRecycler.setNoMoreData(false);
-        mMulLayout.showContent();
-        mRecycler.setReFreshComplete();
-        if (data == null || data.size() < 1) {
-            mMulLayout.showEmpty();
-        } else {
-            mData.clear();
-            mData.addAll(data);
-            mAdapter.notifyDataSetChanged();
-            if (data.size() != PAGE_SIZE) {
-                mRecycler.setNoMoreData(true);
-            }
-        }
-    }
-
-    @Override
-    public void addData(List<TaskBean> data) {
-        mRecycler.setloadMoreComplete();
-        if (data == null || data.size() < 1) {
-            mRecycler.setNoMoreData(true);
-        } else {
-            mData.addAll(data);
-            mAdapter.notifyDataSetChanged();
-            if (data.size() != PAGE_SIZE) {
-                mRecycler.setNoMoreData(true);
-            }
-        }
     }
 }
