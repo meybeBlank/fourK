@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_36"
-    android:gravity="center"
-    android:textColor="@color/c_333333_text"
-    android:layout_margin="@dimen/dp_4"
-    android:textSize="@dimen/sp_16"
-    android:textStyle="bold" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.fengz.personal.fourweeks.business1.ui.viewmodel.DayItemViewModel" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_36"
+        android:layout_margin="@dimen/dp_4"
+        android:gravity="center"
+        android:text="@{viewModel.week}"
+        android:textColor="@color/c_333333_text"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold" />
+</layout>
