@@ -43,6 +43,8 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding, Detail
         ToolbarViewHolder holder = new ToolbarViewHolder();
         holder.init(this, mBinding.includeToolbar.toolbarActionbar);
         mBinding.setVariable(BR.toolbarViewmodel, holder.getViewModel());
+        holder.setTitle("任务详情");
+        holder.showBack(true);
 
         mViewModel.getData(mTaskId);
     }

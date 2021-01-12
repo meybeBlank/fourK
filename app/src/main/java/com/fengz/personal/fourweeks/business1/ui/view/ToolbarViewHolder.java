@@ -22,4 +22,12 @@ public class ToolbarViewHolder extends BaseView<ToolbarActionbarBinding, Toolbar
         activity.setSupportActionBar((Toolbar) parent);
         mViewModel.title.set("今日目标");
     }
+
+    public void setTitle(String title) {
+        mViewModel.title.set(title);
+    }
+
+    public void showBack(boolean show) {
+        mViewModel.showBack.set(show ? View.VISIBLE : View.GONE);
+    }
 }

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.fengz.personal.fourweeks.business1.ui.widget.LoadingDialog;
 import com.fengz.personal.fourweeks.utils.LogUtils;
+import com.fengz.personal.fourweeks.utils.ToastUtils;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.LifecycleTransformer;
@@ -95,6 +96,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         mViewModel.getUIHolder().getShowLoadingEvent().observe(this, this::showLoadingB);
         mViewModel.getUIHolder().getDismissLoadingEvent().observe(this, aVoid -> dismissLoadingB());
         mViewModel.getUIHolder().getFinishActEvent().observe(this, aVoid -> getActivity().finish());
+        mViewModel.getUIHolder().getToastActEvent().observe(this, ToastUtils::show);
         mViewModel.getUIHolder().getStartActEvent().observe(this, stringObjectMap -> {
             if (stringObjectMap == null) throw new NullPointerException("stringObjectMap is null");
             Class<?> aClass = (Class<?>) stringObjectMap.get(BaseViewModel.ParamKey.CLASS.value);

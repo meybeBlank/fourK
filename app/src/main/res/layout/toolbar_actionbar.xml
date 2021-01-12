@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="toolbarViewmodel"
             type="com.fengz.personal.fourweeks.business1.ui.viewmodel.ToolbarViewModel" />

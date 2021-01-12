@@ -106,6 +106,7 @@ public class BaseViewModel extends AndroidViewModel implements IViewModel {
         private SingleLiveEvent<Boolean> showLoadingEvent;
         private SingleLiveEvent<Void> dismissLoadingEvent;
         private SingleLiveEvent<Void> finishActEvent;
+        private SingleLiveEvent<String> toastActEvent;
         private SingleLiveEvent<Map<String, Object>> startActEvent;
 
         public SingleLiveEvent<Boolean> getShowLoadingEvent() {
@@ -114,6 +115,10 @@ public class BaseViewModel extends AndroidViewModel implements IViewModel {
 
         public SingleLiveEvent<Void> getDismissLoadingEvent() {
             return dismissLoadingEvent = get(dismissLoadingEvent);
+        }
+
+        public SingleLiveEvent<String> getToastActEvent() {
+            return toastActEvent = get(toastActEvent);
         }
 
         public SingleLiveEvent<Void> getFinishActEvent() {
@@ -134,6 +139,10 @@ public class BaseViewModel extends AndroidViewModel implements IViewModel {
 
     protected void finish() {
         mUIHolder.getFinishActEvent().call();
+    }
+
+    protected void showToast(String info){
+        mUIHolder.getToastActEvent().setValue(info);
     }
 
     protected void startActivity(Class<?> classAct, Bundle bundle) {
