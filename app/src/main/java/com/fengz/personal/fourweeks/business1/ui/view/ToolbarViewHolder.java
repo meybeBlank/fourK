@@ -1,5 +1,7 @@
 package com.fengz.personal.fourweeks.business1.ui.view;
 
+import android.arch.lifecycle.Observer;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,6 +21,9 @@ public class ToolbarViewHolder extends BaseView<ToolbarActionbarBinding, Toolbar
     @Override
     public void init(AppCompatActivity activity, View parent) {
         super.init(activity, parent);
+
+        mViewModel.getUIHolder().getFinishActEvent().observe(activity, aVoid -> activity.finish());
+
         activity.setSupportActionBar((Toolbar) parent);
         mViewModel.title.set("今日目标");
     }
